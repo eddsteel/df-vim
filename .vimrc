@@ -159,4 +159,13 @@ autocmd InsertEnter * :set nornu
 autocmd InsertLeave * :set rnu
 
 
+" twitter
+
+ruby require 'rubygems'
+ruby require 'vim-twitter'
+
+nnoremap <leader>t :set filetype=tweet<CR>
+autocmd filetype tweet set textwidth=0
+autocmd filetype tweet nnoremap <leader>p V"ty:Tweet t<backspace>
+
 syn on
