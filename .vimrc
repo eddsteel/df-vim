@@ -48,6 +48,7 @@ set noswapfile
 set fdm=indent " fold on indent
 
 autocmd filetype ruby set expandtab
+autocmd filetype javascript set expandtab
 
 autocmd filetype mail set tw=72
 
