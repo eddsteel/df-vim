@@ -32,8 +32,6 @@ inoremap jj <Esc>
 nnoremap <leader>. :!./%<cr>
 " in normal mode insert current file name with leaderf
 nnoremap <leader>f :read !ls %<cr>kJ
-" open ~/TODO with leadert
-nnoremap <leader>t :e ~/TODO<cr>
 " open ~/.reminders with leaderr
 nnoremap <leader>r :e ~/.reminders<cr>
 " open vimrc with leaderv
