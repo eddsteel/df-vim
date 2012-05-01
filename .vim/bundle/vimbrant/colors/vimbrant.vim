@@ -1,0 +1,1 @@
+/Users/edwardsteel/Projects/vimbrant/vimbrant.vim
