@@ -154,11 +154,16 @@ set rnu
 autocmd InsertEnter * :set nornu
 autocmd InsertLeave * :set rnu
 
+if has('mac')
+	set gfn=Monaco
+endif
+
 
 " twitter
-
-ruby require 'rubygems'
-ruby require 'vim-twitter'
+if has('ruby')
+	ruby require 'rubygems'
+	ruby require 'vim-twitter'
+endif
 
 nnoremap <leader>t :set filetype=tweet<CR>
 autocmd filetype tweet set textwidth=0
