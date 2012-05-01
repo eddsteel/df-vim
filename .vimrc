@@ -90,11 +90,7 @@ augroup JumpCursorOnEdit
 augroup END
 
 set t_Co=256
-if (has("gui_running"))
-	colorscheme lanai
-else
-	colorscheme vimbrant
-endif
+colorscheme vimbrant
 
 set list
 set listchars=tab:→\ ,extends:»,precedes:«,trail:·,nbsp:·
