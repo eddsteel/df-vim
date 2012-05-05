@@ -3,6 +3,7 @@ set encoding=utf-8
 scriptencoding utf-8
 
 " Load Pathogen
+filetype on " fix vim exit badness
 filetype off
 let g:pathogen_disabled = ['pathogen'] " prevent pathogen from self-sourcing
 call pathogen#helptags()
