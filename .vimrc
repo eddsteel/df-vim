@@ -6,8 +6,8 @@ scriptencoding utf-8
 filetype on " fix vim exit badness
 filetype off
 let g:pathogen_disabled = ['pathogen'] " prevent pathogen from self-sourcing
-call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
 filetype plugin indent on
 
 " Change map leader to ,
@@ -140,6 +140,9 @@ nmap <Leader>i :%!xsltlint<CR>
 autocmd filetype java let @j=':read !echo %^v3f/x$F/spublic class f.Do{}ggIpackage J:s!/!.!gA;GO'
 " macro i: import last typed class name (without package).
 autocmd filetype java let @i='viwyggoimport pa;bi'
+
+" command aliases
+cab t tag
 
 " aliases for java
 autocmd filetype java ab ifb if<Space>()<CR>{<CR>}<esc>kk$i
