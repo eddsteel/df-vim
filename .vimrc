@@ -162,15 +162,17 @@ if has('mac')
 	set gfn=Monaco
 endif
 
+" Git
+cab gs Gstatus
+cab gd Gdiff
+cab gw Gwrite
+cab gr Gread
+cab dg diffget
+cab dp diffput
 
-" twitter
-if has('ruby')
-	ruby require 'rubygems'
-	ruby require 'vim-twitter'
-endif
+" notes
+let g:notes_directory = '~/.org/project-support'
+let g:notes_suffix = '.txt' " otherwise my phone doesn't want to read them.
 
-nnoremap <leader>t :set filetype=tweet<CR>
-autocmd filetype tweet set textwidth=0
-autocmd filetype tweet nnoremap <leader>p V"ty:Tweet t<backspace>
 
 syn on
