@@ -176,6 +176,9 @@ cab dp diffput
 let g:notes_directory = '~/.org/project-support'
 let g:notes_suffix = '.txt' " otherwise my phone doesn't want to read them.
 
+" nerdtree
+cab nt NERDTree
+
 "wtf happened to my modelines?
 set modelines=2
 
