@@ -153,13 +153,6 @@ autocmd filetype java ab pfS private<Space>final<Space>String
 autocmd filetype java ab pfi private<Space>final<Space>int
 autocmd filetype java ab println System.out.println("");<esc>hhi
 
-" relative number fun
-if (v:version > 702)
-	set rnu
-	autocmd InsertEnter * :set nornu
-	autocmd InsertLeave * :set rnu
-endif
-
 if has('mac')
 	set gfn=Monaco
 endif
