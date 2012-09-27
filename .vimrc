@@ -175,5 +175,20 @@ cab nt NERDTree
 "wtf happened to my modelines?
 set modelines=2
 
+au VimEnter * RainbowParenthesesToggle
+au FileType clojure RainbowParenthesesLoadRound
+
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3']]
+
+
+
 
 syn on
