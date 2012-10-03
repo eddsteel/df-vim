@@ -14,6 +14,7 @@ filetype plugin indent on
 let mapleader=","
 
 set hidden " Preserve closed buffers
+set wildmode=list:longest " auto-complete like shell
 
 set tw=78 " width of 78
 set ts=2  " tab of 2
@@ -29,12 +30,14 @@ nnoremap <leader><space> :noh<cr>
 set showmode
 " in insert mode, got to normal mode with jj
 inoremap jj <Esc>
+" in normal mode, source current file with leader,
+nnoremap <leader>, :so %<cr>
 " in normal mode, run current file with leader.
 nnoremap <leader>. :!./%<cr>
 " in normal mode insert current file name with leaderf
 nnoremap <leader>f :read !ls %<cr>kJ
 " open ~/.reminders with leaderr
-nnoremap <leader>r :e ~/.reminders<cr>
+nnoremap <leader>r :execute "edit ~/.org/schedule.rem"
 " open vimrc with leaderv
 nnoremap <leader>v :e ~/.vimrc<cr>
 
@@ -117,7 +120,6 @@ set autoindent " auto-indent
 set copyindent " copy from previous line when indenting
 
 " window fun
-nnoremap <leader>w <C-w>v<C-w>l
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -158,12 +160,14 @@ if has('mac')
 endif
 
 " Git
+cab gc Gcommit
 cab gs Gstatus
 cab gd Gdiff
 cab gw Gwrite
 cab gr Gread
 cab dg diffget
 cab dp diffput
+cab dt diffthis
 
 " notes
 let g:notes_directory = '~/.org/project-support'
@@ -175,19 +179,56 @@ cab nt NERDTree
 "wtf happened to my modelines?
 set modelines=2
 
-au VimEnter * RainbowParenthesesToggle
-au FileType clojure RainbowParenthesesLoadRound
+" rainbow pairs (vimbrant-y)
+"let g:rbpt_colorpairs = [
+"\ [15, 'White'],
+"\ [118, 'RoyalBlue3'],
+"\ [197, 'SeaGreen3'],
+"\ [208, 'DarkOrchid3'],
+"\ [123,  'firebrick3'],
+"\ [135, 'RoyalBlue3'],
+"\ [98, 'SeaGreen3'],
+"\ [225, 'DarkOrchid3'],
+"\ [161, 'firebrick3'],
+"\ [85,  'RoyalBlue3'],
+"\ [244, 'SeaGreen3'],
+"\ [118, 'DarkOrchid3'],
+"\ [197, 'firebrick3'],
+"\ [208, 'RoyalBlue3'],
+"\ [118, 'SeaGreen3'],
+"\ [197, 'DarkOrchid3'],
+"\ ]
 
+" rainbow pairs (monochrome-y)
+let g:rbpt_max = 9
 let g:rbpt_colorpairs = [
-    \ ['brown',       'RoyalBlue3'],
-    \ ['Darkblue',    'SeaGreen3'],
-    \ ['darkgray',    'DarkOrchid3'],
-    \ ['darkgreen',   'firebrick3'],
-    \ ['darkcyan',    'RoyalBlue3'],
-    \ ['darkred',     'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown',       'firebrick3']]
+	\ [15, 'White'],
+	\ [252, 'RoyalBlue3'],
+	\ [246, 'SeaGreen3'],
+	\ [242, 'DarkOrchid3'],
+	\ [238, 'firebrick3'],
+	\ [236, 'RoyalBlue3'],
+	\ [235, 'SeaGreen3'],
+	\ [234, 'DarkOrchid3'],
+	\ [233, 'firebrick3'],
+	\ ]
 
+nnoremap <leader>b :RainbowParenthesesLoadBraces<cr>
+nnoremap <leader>p :RainbowParenthesesLoadRound<cr>
+
+set laststatus=2
+let g:Powerline_symbols = 'fancy'
+
+" Steal Uji's space idea
+nnoremap <space>w :<c-u>write<cr>
+nnoremap <space>q :<c-u>quit<cr>
+nnoremap <space>e :<c-u>edit<space>
+nnoremap <space>t :<c-u>tag<space>
+nnoremap <space>s :<c-u>vert<space>stag<space>
+nnoremap <space>f :<c-u>find<space>
+nnoremap <space>g :<c-u>vimgrep<space>//gj<space>./**/*<left><left><left><left><left><left><left><left><left><left>
+nnoremap <space>j <c-f>
+nnoremap <space>k <c-b>
 
 
 
