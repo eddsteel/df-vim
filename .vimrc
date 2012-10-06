@@ -229,6 +229,8 @@ nnoremap <space>f :<c-u>find<space>
 nnoremap <space>g :<c-u>vimgrep<space>//gj<space>./**/*<left><left><left><left><left><left><left><left><left><left>
 nnoremap <space>j <c-f>
 nnoremap <space>k <c-b>
+nnoremap <space>v <c-w>v
+nnoremap <space><space> :
 
 
 
