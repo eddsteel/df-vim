@@ -41,6 +41,10 @@ nnoremap <leader>r :execute "edit ~/.org/schedule.rem"
 " open vimrc with leaderv
 nnoremap <leader>v :e ~/.vimrc<cr>
 
+" Markdown-style headings
+nnoremap <leader>- yypVr-
+nnoremap <leader>= yypVr=
+
 set history=1000
 set undolevels=1000
 set title
@@ -154,6 +158,9 @@ autocmd filetype java ab pf private<Space>final
 autocmd filetype java ab pfS private<Space>final<Space>String
 autocmd filetype java ab pfi private<Space>final<Space>int
 autocmd filetype java ab println System.out.println("");<esc>hhi
+
+autocmd filetype scala set keywordprg="" " use vimhelp
+autocmd filetype java set keywordprg="" " use vimhelp
 
 if has('mac')
 	set gfn=Monaco
