@@ -147,9 +147,6 @@ autocmd filetype java let @j=':read !echo %^v3f/x$F/spublic class f.Do{}gg
 " macro i: import last typed class name (without package).
 autocmd filetype java let @i='viwyggoimport pa;bi'
 
-" command aliases
-cab t tag
-
 " aliases for java
 autocmd filetype java ab ifb if<Space>()<CR>{<CR>}<esc>kk$i
 autocmd filetype java ab psf private<Space>static<Space>final
@@ -227,17 +224,44 @@ set laststatus=2
 let g:Powerline_symbols = 'fancy'
 
 " Steal Uji's space idea
-nnoremap <space>w :<c-u>write<cr>
-nnoremap <space>q :<c-u>quit<cr>
+nnoremap <space>M zM
+nnoremap <space>R zR
+nnoremap <space>U vU
+nnoremap <space>O zO
+nnoremap <space>C zC
+
+nnoremap <space>c zc
+nnoremap <space>d :Gdiff
 nnoremap <space>e :<c-u>edit<space>
-nnoremap <space>t :<c-u>tag<space>
-nnoremap <space>s :<c-u>vert<space>stag<space>
 nnoremap <space>f :<c-u>find<space>
 nnoremap <space>g :<c-u>vimgrep<space>//gj<space>./**/*<left><left><left><left><left><left><left><left><left><left>
+nnoremap <space>h <c-w>h
 nnoremap <space>j <c-f>
 nnoremap <space>k <c-b>
+nnoremap <space>l <c-w>l
+nnoremap <space>m zm
+nnoremap <space>n :next<cr>
+nnoremap <space>o zo
+nnoremap <space>p :prev<cr>
+nnoremap <space>q :<c-u>quit<cr>
+nnoremap <space>r zr
+nnoremap <space>s :<c-u>vert<space>stag<space>
+nnoremap <space>t :<c-u>tag<space>
+nnoremap <space>u vu
 nnoremap <space>v <c-w>v
+nnoremap <space>w :<c-u>write<cr>
+nnoremap <space>x :x<cr>
+nnoremap <space>? :he<space>
+
+vnoremap <space>s :sort<cr>
+vnoremap <space>/ :s/
+
 nnoremap <space><space> :
+vnoremap <space><space> :
+" Train!
+map : <Nop>
+
+
 
 
 
