@@ -35,7 +35,7 @@ nnoremap <leader>, :so %<cr>
 " in normal mode, run current file with leader.
 nnoremap <leader>. :!./%<cr>
 " in normal mode insert current file name with leaderf
-nnoremap <leader>f :read !ls %<cr>kJ
+nnoremap <leader>f "%p
 " open ~/.reminders with leaderr
 nnoremap <leader>r :execute "edit ~/.org/schedule.rem"
 " open vimrc with leaderv
@@ -178,7 +178,7 @@ let g:notes_directory = '~/.org/project-support'
 let g:notes_suffix = '.txt' " otherwise my phone doesn't want to read them.
 
 " nerdtree
-cab nt NERDTree
+cab nt NERDTreeToggle
 
 "wtf happened to my modelines?
 set modelines=2
@@ -206,29 +206,36 @@ set modelines=2
 " rainbow pairs (monochrome-y)
 let g:rbpt_max = 9
 let g:rbpt_colorpairs = [
-	\ [15, 'White'],
-	\ [252, 'RoyalBlue3'],
-	\ [246, 'SeaGreen3'],
-	\ [242, 'DarkOrchid3'],
-	\ [238, 'firebrick3'],
-	\ [236, 'RoyalBlue3'],
 	\ [235, 'SeaGreen3'],
-	\ [234, 'DarkOrchid3'],
-	\ [233, 'firebrick3'],
+	\ [236, 'firebrick3'],
+	\ [237, 'DarkOrchid3'],
+	\ [239, 'SeaGreen3'],
+	\ [242, 'RoyalBlue3'],
+	\ [245, 'firebrick3'],
+	\ [248, 'DarkOrchid3'],
+	\ [250, 'RoyalBlue3'],
+	\ [255, 'White'],
 	\ ]
 
 nnoremap <leader>b :RainbowParenthesesLoadBraces<cr>
 nnoremap <leader>p :RainbowParenthesesLoadRound<cr>
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainboParenthesesLoadRound
+au Syntax * RainboParenthesesLoadSquare
+au Syntax * RainboParenthesesLoadBraces
+
 
 set laststatus=2
 let g:Powerline_symbols = 'fancy'
 
 " Steal Uji's space idea
-nnoremap <space>M zM
-nnoremap <space>R zR
-nnoremap <space>U vU
-nnoremap <space>O zO
+
 nnoremap <space>C zC
+nnoremap <space>M zM
+nnoremap <space>O zO
+nnoremap <space>R zR
+nnoremap <space>T :NERDTreeFind<cr>
+nnoremap <space>U vU
 
 nnoremap <space>c zc
 nnoremap <space>d :Gdiff
