@@ -2,12 +2,11 @@ set nocompatible
 set encoding=utf-8
 scriptencoding utf-8
 
-" Load Pathogen
+"  Load Pathogen {{{1
 filetype on " fix vim exit badness
 filetype off
-let g:pathogen_disabled = ['pathogen'] " prevent pathogen from self-sourcing
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+runtime bundle/pathogen/autoload/pathogen.vim
+call pathogen#infect()
 filetype plugin indent on
 
 " Change map leader to ,
