@@ -9,7 +9,7 @@ runtime bundle/pathogen/autoload/pathogen.vim
 call pathogen#infect()
 filetype plugin indent on
 
-" Change map leader to ,
+" Change map leader to , {{{1
 let mapleader=","
 
 set hidden " Preserve closed buffers
@@ -23,12 +23,19 @@ set ignorecase
 set smartcase " all lower case means case insensitive search
 set hlsearch
 set incsearch
+set history=1000
+set undolevels=1000
+set title
+set visualbell
+set fdm=indent " fold on indent
+
+set nobackup
+set noswapfile
+
 " clear search with leader+space
 nnoremap <leader><space> :noh<cr>
-"set colorcolumn=80
+set colorcolumn=78
 set showmode
-" in insert mode, got to normal mode with jj
-inoremap jj <Esc>
 " in normal mode, source current file with leader,
 nnoremap <leader>, :so %<cr>
 " in normal mode, run current file with leader.
@@ -44,20 +51,12 @@ nnoremap <leader>v :e ~/.vimrc<cr>
 nnoremap <leader>- yypVr-
 nnoremap <leader>= yypVr=
 
-set history=1000
-set undolevels=1000
-set title
-set visualbell
-
-set nobackup
-set noswapfile
-
-set fdm=indent " fold on indent
 
 autocmd filetype ruby set expandtab
 autocmd filetype javascript set expandtab
 
 autocmd filetype mail set tw=72
+autocmd filetype mail set colorcolumn=72
 
 autocmd filetype haskell setlocal include=^import 
 autocmd filetype haskell setlocal includeexpr=substitute(substitute(v:fname,'\\.','/','g'),'$','.hs','')
@@ -182,6 +181,7 @@ cab nt NERDTreeToggle
 "wtf happened to my modelines?
 set modelines=2
 
+" Rainbow parens {{{1
 " rainbow pairs (vimbrant-y)
 "let g:rbpt_colorpairs = [
 "\ [15, 'White'],
@@ -219,22 +219,23 @@ let g:rbpt_colorpairs = [
 nnoremap <leader>b :RainbowParenthesesLoadBraces<cr>
 nnoremap <leader>p :RainbowParenthesesLoadRound<cr>
 au VimEnter * RainbowParenthesesToggle
-au Syntax * RainboParenthesesLoadRound
-au Syntax * RainboParenthesesLoadSquare
-au Syntax * RainboParenthesesLoadBraces
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
 
+"Powerline {{{1
 set laststatus=2
 let g:Powerline_symbols = 'fancy'
 
-" Steal Uji's space idea
-
+" Steal Uji's space idea {{{1
 nnoremap <space>C zC
 nnoremap <space>M zM
 nnoremap <space>O zO
 nnoremap <space>R zR
 nnoremap <space>T :NERDTreeFind<cr>
 nnoremap <space>U vU
+nnoremap <space>V :<c-u>VimShellCreate -split -splitcommand=split<Cr>
 
 nnoremap <space>c zc
 nnoremap <space>d :Gdiff
@@ -245,12 +246,10 @@ nnoremap <space>h <c-w>h
 nnoremap <space>j <c-f>
 nnoremap <space>k <c-b>
 nnoremap <space>l <c-w>l
-nnoremap <space>m zm
 nnoremap <space>n :next<cr>
 nnoremap <space>o zo
 nnoremap <space>p :prev<cr>
 nnoremap <space>q :<c-u>quit<cr>
-nnoremap <space>r zr
 nnoremap <space>s :<c-u>vert<space>stag<space>
 nnoremap <space>t :<c-u>tag<space>
 nnoremap <space>u vu
@@ -262,13 +261,72 @@ nnoremap <space>? :he<space>
 vnoremap <space>s :sort<cr>
 vnoremap <space>/ :s/
 
+
+" Other finger-savers {{{1
+inoremap jj <Esc>
+nnoremap <tab> :
+vnoremap <tab> :
 nnoremap <space><space> :
 vnoremap <space><space> :
-" Train!
-map : <Nop>
 
 
+"come on. {{{1
+set cm=blowfish
 
+" vimshell stuff {{{1
+let g:vimshell_right_prompt = 'fnamemodify(getcwd(), "~")'
+let g:vimshell_prompt = '% '
+let g:vimshell_split_command = 'botright 12 split'
+
+autocmd FileType int-* setlocal laststatus=0
+
+"Digraphorific {{1
+digraph oo 176
+
+"NeoComplCache {{{1
+let g:neocomplcache_enable_at_startup = 1
+" scala stuff from Uji
+" scala sbt interaction {{{1
+command! -nargs=0 StartScalaRepl execute 'VimShellInteractive scala | let t:sbt_bufname = bufname('%')
+command! -nargs=0 StartSBT execute 'VimShellInteractive sbt' | let t:sbt_bufname = bufname('%')
+
+function! s:sbt_run()
+  let cmds = get(t:, 'sbt_cmds', 'compile')
+
+  let sbt_bufname = get(t:, 'sbt_bufname')
+  if sbt_bufname !=# ''
+    call vimshell#interactive#set_send_buffer(sbt_bufname)
+    call vimshell#interactive#send(cmds)
+  else
+    echoerr 'try StartSBT'
+  endif
+endfunction
+
+function! s:vimrc_scala()
+  nnoremap <buffer> <Space>m :<C-u>write<Cr>:call <SID>sbt_run()<Cr>
+
+endfunction
+
+augroup vimrc_scala
+  autocmd!
+  autocmd FileType scala call s:vimrc_scala()
+  autocmd FileType scala nnoremap <buffer> <Space>r :<C-u>StartSBT
+augroup END
+
+" clojure {{{1
+let vimclojure#FuzzyIndent=1
+let vimclojure#HighlightBuiltins=1
+let vimclojure#HighlightContrib=1
+let vimclojure#DynamicHighlighting=1
+let vimclojure#ParenRainbow=1
+let vimclojure#WantNailgun = 1
+let vimclojure#NailgunClient = "/usr/local/bin/ng"
+
+" Paredit
+" let g:paredit_mode = 0
 
 
 syn on
+
+
+" vim: set foldmethod=marker :
