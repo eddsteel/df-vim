@@ -2,6 +2,9 @@ set nocompatible
 set encoding=utf-8
 scriptencoding utf-8
 
+"  Go away help {{{1
+map <F1> <Esc>
+
 "  Load Pathogen {{{1
 filetype on " fix vim exit badness
 filetype off
@@ -114,7 +117,7 @@ nnoremap / /\v
 vnoremap / /\v
 
 
-set tags=~/.tags
+set tags=src/main/scala/tags,src/test/scala/tags,./tags,tags,~/Projects/tags
 " removed from default: mgTt
 set guioptions=aceirL
 
@@ -264,8 +267,6 @@ vnoremap <space>/ :s/
 
 " Other finger-savers {{{1
 inoremap jj <Esc>
-nnoremap <tab> :
-vnoremap <tab> :
 nnoremap <space><space> :
 vnoremap <space><space> :
 
@@ -311,6 +312,9 @@ augroup vimrc_scala
   autocmd!
   autocmd FileType scala call s:vimrc_scala()
   autocmd FileType scala nnoremap <buffer> <Space>r :<C-u>StartSBT
+	autocmd FileType scala set et
+	autocmd FileType scala set sw=2
+	autocmd FileType scala set ts=2
 augroup END
 
 " clojure {{{1
