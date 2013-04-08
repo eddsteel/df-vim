@@ -3,7 +3,9 @@ set encoding=utf-8
 scriptencoding utf-8
 
 "  Go away help {{{1
-map <F1> <Esc>
+nmap <F1> <Esc>
+imap <F1> <Esc>
+
 
 "  Load Pathogen {{{1
 filetype on " fix vim exit badness
@@ -111,6 +113,9 @@ set encoding=utf-8
 
 " sudo write
 cmap w!! w !sudo tee % >/dev/null
+
+" see command line history
+nnoremap !! :!<CR>
 
 " nomal regex format
 nnoremap / /\v
@@ -233,6 +238,8 @@ let g:Powerline_symbols = 'fancy'
 
 " Steal Uji's space idea {{{1
 nnoremap <space>C zC
+nnoremap <space>D :<c-u>Dispatch<cr>
+nnoremap <space>F :<c-u>find<space>**/
 nnoremap <space>M zM
 nnoremap <space>O zO
 nnoremap <space>R zR
@@ -240,28 +247,31 @@ nnoremap <space>T :NERDTreeFind<cr>
 nnoremap <space>U vU
 nnoremap <space>V :<c-u>VimShellCreate -split -splitcommand=split<Cr>
 
+
+nnoremap <space>a :<c-u>!~/bin/tag-dir .<cr><cr>
 nnoremap <space>c zc
-nnoremap <space>d :Gdiff
+nnoremap <space>d :<c-u>Gdiff<cr>
 nnoremap <space>e :<c-u>edit<space>
-nnoremap <space>f :<c-u>find<space>
+nnoremap <space>f :<c-u>set foldlevel=
 nnoremap <space>g :<c-u>vimgrep<space>//gj<space>./**/*<left><left><left><left><left><left><left><left><left><left>
 nnoremap <space>h <c-w>h
 nnoremap <space>j <c-f>
 nnoremap <space>k <c-b>
 nnoremap <space>l <c-w>l
-nnoremap <space>n :next<cr>
+nnoremap <space>m :<c-u>Make<cr>
+nnoremap <space>n :<c-u>next<cr>
 nnoremap <space>o zo
-nnoremap <space>p :prev<cr>
+nnoremap <space>p :<c-u>prev<cr>
 nnoremap <space>q :<c-u>quit<cr>
 nnoremap <space>s :<c-u>vert<space>stag<space>
 nnoremap <space>t :<c-u>tag<space>
 nnoremap <space>u vu
 nnoremap <space>v <c-w>v
 nnoremap <space>w :<c-u>write<cr>
-nnoremap <space>x :x<cr>
-nnoremap <space>? :he<space>
+nnoremap <space>x :<c-u>x<cr>
+nnoremap <space>? :<c-u>he<space>
 
-vnoremap <space>s :sort<cr>
+vnoremap <space>s :<c-u>sort<cr>
 vnoremap <space>/ :s/
 
 
@@ -304,17 +314,21 @@ function! s:sbt_run()
 endfunction
 
 function! s:vimrc_scala()
-  nnoremap <buffer> <Space>m :<C-u>write<Cr>:call <SID>sbt_run()<Cr>
+  "nnoremap <buffer> <Space>m :<C-u>write<Cr>:call <SID>sbt_run()<Cr>
 
 endfunction
 
 augroup vimrc_scala
   autocmd!
   autocmd FileType scala call s:vimrc_scala()
-  autocmd FileType scala nnoremap <buffer> <Space>r :<C-u>StartSBT
+  "autocmd FileType scala nnoremap <buffer> <Space>r :<C-u>StartSBT
 	autocmd FileType scala set et
 	autocmd FileType scala set sw=2
 	autocmd FileType scala set ts=2
+	autocmd FileType scala set makeprg=sbt\ compile
+	autocmd FileType scala set efm=%E\ %#[error]\ %f:%l:\ %m,%C\ %#[error]\ %p^,%-C%.%#,%Z,
+	       \%W\ %#[warn]\ %f:%l:\ %m,%C\ %#[warn]\ %p^,%-C%.%#,%Z,
+	       \%-G%.%#
 augroup END
 
 " clojure {{{1
