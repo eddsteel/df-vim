@@ -1,0 +1,7 @@
+--langdef=scala
+--langmap=scala:.scala
+--regex-scala=/^[^*]*def[ ]*([^(=[({ :]*)/\1/d,definition/
+--regex-scala=/^[^*]*class[ ]*([^[( {:]*)/\1/c,class/
+--regex-scala=/^[^*]*trait[ ]*([^[( {:]*)/\1/t,trait/
+--regex-scala=/^[^*]*object[ ]*([^ {:]*)/\1/o,object/
+--regex-scala=/^[^*]*val[ (]*([^,= :]*)/\1/v,val/
