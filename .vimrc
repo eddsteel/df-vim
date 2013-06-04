@@ -154,20 +154,6 @@ nmap <Leader>pxa :%!xmllint --format -<CR>
 
 nmap <Leader>i :%!xsltlint<CR>
 
-" macro j: package and public class declarations.
-autocmd filetype java let @j=':read !echo %^v3f/x$F/spublic class f.Do{}ggIpackage J:s!/!.!gA;GO'
-" macro i: import last typed class name (without package).
-autocmd filetype java let @i='viwyggoimport pa;bi'
-
-" aliases for java
-autocmd filetype java ab ifb if<Space>()<CR>{<CR>}<esc>kk$i
-autocmd filetype java ab psf private<Space>static<Space>final
-autocmd filetype java ab psfS private<Space>static<Space>final<Space>String
-autocmd filetype java ab pf private<Space>final
-autocmd filetype java ab pfS private<Space>final<Space>String
-autocmd filetype java ab pfi private<Space>final<Space>int
-autocmd filetype java ab println System.out.println("");<esc>hhi
-
 autocmd filetype scala set keywordprg="" " use vimhelp
 autocmd filetype java set keywordprg="" " use vimhelp
 
@@ -186,7 +172,7 @@ cab dp diffput
 cab dt diffthis
 
 " notes
-let g:notes_directory = '~/.org/project-support'
+let g:notes_directories = ['~/.org/project-support']
 let g:notes_suffix = '.txt' " otherwise my phone doesn't want to read them.
 
 " nerdtree
@@ -300,8 +286,9 @@ autocmd FileType int-* setlocal laststatus=0
 "Digraphorific {{1
 digraph oo 176
 
-"NeoComplCache {{{1
+"NeoComplete {{{1
 let g:neocomplcache_enable_at_startup = 1
+let g:neocomplete#enable_at_startup = 1
 " scala stuff from Uji
 " scala sbt interaction {{{1
 command! -nargs=0 StartScalaRepl execute 'VimShellInteractive scala | let t:sbt_bufname = bufname('%')
