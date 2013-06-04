@@ -122,7 +122,7 @@ nnoremap / /\v
 vnoremap / /\v
 
 
-set tags=src/main/scala/tags,src/test/scala/tags,./tags,tags,~/Projects/tags
+set tags=./tags,../tags,tags,~/Projects/tags
 " removed from default: mgTt
 set guioptions=aceirL
 
