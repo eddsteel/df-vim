@@ -1,0 +1,37 @@
+NeoBundle 'Shougo/vimproc.vim', {
+      \ 'build' : {
+      \     'windows' : 'make -f make_mingw32.mak',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+			\ 'name' : 'proc',
+      \ }
+
+NeoBundle 'Lokaltog/vim-powerline', {'name': 'powerline'}
+NeoBundle 'Shougo/neocomplete.vim', {'name': 'complete'}
+NeoBundle 'Shougo/neosnippet.vim', {'name': 'snippet'}
+NeoBundle 'Shougo/unite.vim', {'name': 'unite'}
+NeoBundle 'Shougo/vimshell.vim', {'name': 'shell'}
+NeoBundle 'Shougo/context_filetype.vim', {'name': 'filetype-context'}
+NeoBundle 'ZoomWin', {'name': 'zoomwin'}
+NeoBundle 'ap/vim-css-color', {'name': 'csscolor'}
+NeoBundle 'eddsteel/java-javadoc-vim', {'name': 'java-javadoc'}
+NeoBundle 'eddsteel/javax-javadoc-vim', {'name': 'javax-javadoc'}
+NeoBundle 'eddsteel/vim-mail', {'name': 'mail'}
+NeoBundle 'eddsteel/vimoutliner', {'name': 'outliner'}
+NeoBundle 'eddsteel/vim-scala', {'name': 'scala'}
+NeoBundle 'eddsteel/vim-vimbrant', {'name': 'vimbrant'}
+NeoBundle 'guns/vim-clojure-static', {'name': 'clojure-static'}
+NeoBundle 'kien/rainbow_parentheses.vim', {'name': 'rainbow'}
+NeoBundle 'listmaps.vim', {'name': 'listmaps'}
+NeoBundle 'scrooloose/nerdtree', {'name': 'nerdtree'}
+NeoBundle 'sukima/xmledit', {'name': 'xml'}
+NeoBundle 'tpope/vim-dispatch', {'name': 'dispatch'}
+NeoBundle 'tpope/vim-fireplace', {'name': 'fireplace'}
+NeoBundle 'tpope/vim-fugitive', {'name': 'fugitive'}
+NeoBundle 'tpope/vim-markdown', {'name': 'markdown'}
+NeoBundle 'tpope/vim-repeat', {'name': 'repeat'}
+NeoBundle 'tpope/vim-surround', {'name': 'surround'}
+NeoBundle 'tpope/vim-unimpaired', {'name': 'unimpaired'}
+" vi: set ft=vim:
