@@ -139,6 +139,8 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+nnoremap <C-w>\| <C-w>v<C-w>l
+
 map <Leader>x :set filetype=xml<CR>
   \:source $VIMRUNTIME/syntax/xml.vim<CR>
   \:set foldmethod=syntax<CR>
