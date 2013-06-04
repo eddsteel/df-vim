@@ -7,12 +7,16 @@ nmap <F1> <Esc>
 imap <F1> <Esc>
 
 
-"  Load Pathogen {{{1
-filetype on " fix vim exit badness
-filetype off
-runtime bundle/pathogen/autoload/pathogen.vim
-call pathogen#infect()
+" Load neobundle {{{1
+if has('vim_starting')
+	set runtimepath+=~/.vim/bundle/neobundle/
+endif
+call neobundle#rc(expand('~/.vim/bundle/'))
+NeoBundleFetch 'Shougo/neobundle.vim', {'name': 'neobundle'}
+source ~/.vim/bundle/.manifest
+
 filetype plugin indent on
+NeoBundleCheck
 
 " Change map leader to , {{{1
 let mapleader=","
