@@ -34,4 +34,5 @@ NeoBundle 'tpope/vim-markdown', {'name': 'markdown'}
 NeoBundle 'tpope/vim-repeat', {'name': 'repeat'}
 NeoBundle 'tpope/vim-surround', {'name': 'surround'}
 NeoBundle 'tpope/vim-unimpaired', {'name': 'unimpaired'}
+"NeoBundle 'megaannum/vimside', {'name': 'ensime'}
 " vi: set ft=vim:

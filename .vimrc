@@ -9,10 +9,10 @@ imap <F1> <Esc>
 
 " Load neobundle {{{1
 if has('vim_starting')
-	set runtimepath+=~/.vim/bundle/neobundle/
+	set runtimepath+=~/.vim/bundle/bundle/
 endif
 call neobundle#rc(expand('~/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim', {'name': 'neobundle'}
+NeoBundleFetch 'Shougo/neobundle.vim', {'name': 'bundle'}
 source ~/.vim/bundle/.manifest
 
 filetype plugin indent on
@@ -154,7 +154,6 @@ nmap <Leader>pxa :%!xmllint --format -<CR>
 
 nmap <Leader>i :%!xsltlint<CR>
 
-autocmd filetype scala set keywordprg="" " use vimhelp
 autocmd filetype java set keywordprg="" " use vimhelp
 
 if has('mac')
@@ -232,6 +231,7 @@ let g:Powerline_symbols = 'fancy'
 nnoremap <space>C zC
 nnoremap <space>D :<c-u>Dispatch<cr>
 nnoremap <space>F :<c-u>find<space>**/
+nnoremap <space>K :stag<space>
 nnoremap <space>M zM
 nnoremap <space>O zO
 nnoremap <space>R zR
@@ -241,19 +241,19 @@ nnoremap <space>V :<c-u>VimShellCreate -split -splitcommand=split<Cr>
 
 
 nnoremap <space>a :<c-u>!~/bin/tag-dir .<cr><cr>
+nnoremap <space>b :cf<cr>
 nnoremap <space>c zc
 nnoremap <space>d :<c-u>Gdiff<cr>
 nnoremap <space>e :<c-u>edit<space>
 nnoremap <space>f :<c-u>set foldlevel=
 nnoremap <space>g :<c-u>vimgrep<space>//gj<space>./**/*<left><left><left><left><left><left><left><left><left><left>
 nnoremap <space>h <c-w>h
+nnoremap <space>i :cw<cr>
 nnoremap <space>j <c-f>
 nnoremap <space>k <c-b>
 nnoremap <space>l <c-w>l
 nnoremap <space>m :<c-u>Make<cr>
-nnoremap <space>n :<c-u>next<cr>
 nnoremap <space>o zo
-nnoremap <space>p :<c-u>prev<cr>
 nnoremap <space>q :<c-u>quit<cr>
 nnoremap <space>s :<c-u>vert<space>stag<space>
 nnoremap <space>t :<c-u>tag<space>
@@ -271,6 +271,13 @@ vnoremap <space>/ :s/
 inoremap jj <Esc>
 nnoremap <space><space> :
 vnoremap <space><space> :
+" this needs to be set in terminal emulator.
+" iterm has gui for it, hopefully vte has something
+map  <Esc>[?1;32~ <C-'>
+map! <Esc>[?1;32~ <C-'>
+inoremap <C-'> <Esc>:w<cr>a
+nnoremap <C-'> :w<cr>
+vnoremap <C-'> <Esc>:w<cr>a
 
 
 "come on. {{{1
@@ -289,7 +296,22 @@ digraph oo 176
 "NeoComplete {{{1
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplete#enable_at_startup = 1
-" scala stuff from Uji
+" Scala {{1
+autocmd filetype scala set keywordprg="" " use vimhelp
+
+augroup vimrc_scala
+  autocmd!
+  autocmd FileType scala call s:vimrc_scala()
+  "autocmd FileType scala nnoremap <buffer> <Space>r :<C-u>StartSBT
+  autocmd FileType scala set et
+  autocmd FileType scala set sw=2
+  autocmd FileType scala set ts=8
+  autocmd FileType scala set makeprg=sbt\ compile
+  autocmd FileType scala set errorfile=target/quickfix/sbt.quickfix
+  autocmd FileType scala set efm=%E\ %#[error]\ %f:%l:\ %m,%C\ %#[error]\ %p^,%-C%.%#,%Z,
+         \%W\ %#[warn]\ %f:%l:\ %m,%C\ %#[warn]\ %p^,%-C%.%#,%Z,
+         \%-G%.%#
+augroup END
 " scala sbt interaction {{{1
 command! -nargs=0 StartScalaRepl execute 'VimShellInteractive scala | let t:sbt_bufname = bufname('%')
 command! -nargs=0 StartSBT execute 'VimShellInteractive sbt' | let t:sbt_bufname = bufname('%')
@@ -307,22 +329,8 @@ function! s:sbt_run()
 endfunction
 
 function! s:vimrc_scala()
-  "nnoremap <buffer> <Space>m :<C-u>write<Cr>:call <SID>sbt_run()<Cr>
 
 endfunction
-
-augroup vimrc_scala
-  autocmd!
-  autocmd FileType scala call s:vimrc_scala()
-  "autocmd FileType scala nnoremap <buffer> <Space>r :<C-u>StartSBT
-	autocmd FileType scala set et
-	autocmd FileType scala set sw=2
-	autocmd FileType scala set ts=2
-	autocmd FileType scala set makeprg=sbt\ compile
-	autocmd FileType scala set efm=%E\ %#[error]\ %f:%l:\ %m,%C\ %#[error]\ %p^,%-C%.%#,%Z,
-	       \%W\ %#[warn]\ %f:%l:\ %m,%C\ %#[warn]\ %p^,%-C%.%#,%Z,
-	       \%-G%.%#
-augroup END
 
 " clojure {{{1
 let vimclojure#FuzzyIndent=1
@@ -335,6 +343,13 @@ let vimclojure#NailgunClient = "/usr/local/bin/ng"
 
 " Paredit
 " let g:paredit_mode = 0
+
+" Unite
+
+nnoremap <C-p> :<C-u>Unite file_rec/async -input=src\  -start-insert -toggle -buffer-name=file -immediately<cr>
+nnoremap <space>/ :<C-u>Unite ag:src -quick-match -immediately -toggle -buffer-name=grep<cr>
+nnoremap <space>F :<C-u>Unite grep:.::<C-r><C-w><CR>
+
 
 
 syn on
