@@ -37,6 +37,7 @@ set undolevels=1000
 set title
 set visualbell
 set fdm=indent " fold on indent
+set foldlevel=10 " but don't start folded.
 
 set nobackup
 set noswapfile
@@ -154,7 +155,7 @@ nmap <Leader>pxa :%!xmllint --format -<CR>
 
 nmap <Leader>i :%!xsltlint<CR>
 
-autocmd filetype java set keywordprg="" " use vimhelp
+autocmd filetype java setlocal keywordprg="" " use vimhelp
 
 if has('mac')
 	set gfn=Monaco
@@ -303,9 +304,9 @@ augroup vimrc_scala
   autocmd!
   autocmd FileType scala call s:vimrc_scala()
   "autocmd FileType scala nnoremap <buffer> <Space>r :<C-u>StartSBT
-  autocmd FileType scala set et
-  autocmd FileType scala set sw=2
-  autocmd FileType scala set ts=8
+  autocmd FileType scala setlocal et
+  autocmd FileType scala setlocal sw=2
+  autocmd FileType scala setlocal ts=8
   autocmd FileType scala set makeprg=sbt\ compile
   autocmd FileType scala set errorfile=target/quickfix/sbt.quickfix
   autocmd FileType scala set efm=%E\ %#[error]\ %f:%l:\ %m,%C\ %#[error]\ %p^,%-C%.%#,%Z,
@@ -341,13 +342,17 @@ let vimclojure#ParenRainbow=1
 let vimclojure#WantNailgun = 1
 let vimclojure#NailgunClient = "/usr/local/bin/ng"
 
+" yaml {{1
+autocmd FileType yaml NeoCompleteDisable
+
+
 " Paredit
 " let g:paredit_mode = 0
 
 " Unite
 
 nnoremap <C-p> :<C-u>Unite file_rec/async -input=src\  -start-insert -toggle -buffer-name=file -immediately<cr>
-nnoremap <space>/ :<C-u>Unite ag:src -quick-match -immediately -toggle -buffer-name=grep<cr>
+nnoremap <space>/ :<C-u>Unite grep:src -quick-match -immediately -toggle -buffer-name=grep<cr>
 nnoremap <space>F :<C-u>Unite grep:.::<C-r><C-w><CR>
 
 
