@@ -342,9 +342,6 @@ let vimclojure#ParenRainbow=1
 let vimclojure#WantNailgun = 1
 let vimclojure#NailgunClient = "/usr/local/bin/ng"
 
-" yaml {{1
-autocmd FileType yaml NeoCompleteDisable
-
 
 " Paredit
 " let g:paredit_mode = 0
