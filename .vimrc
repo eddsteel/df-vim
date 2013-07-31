@@ -246,10 +246,12 @@ nnoremap <space>V :<c-u>VimShellCreate -split -splitcommand=split<Cr>
 nnoremap <space>a :<c-u>!~/bin/tag-dir .<cr><cr>
 nnoremap <space>b :cf<cr>
 nnoremap <space>c zc
-nnoremap <space>d :<c-u>Gdiff<cr>
 nnoremap <space>e :<c-u>edit<space>
 nnoremap <space>f :<c-u>set foldlevel=
-nnoremap <space>g :<c-u>vimgrep<space>//gj<space>./**/*<left><left><left><left><left><left><left><left><left><left>
+nnoremap <space>gs :<c-u>Gstatus<cr>
+nnoremap <space>gd :<c-u>Gdiff<cr>
+nnoremap <space>gb :<c-u>Gblame<cr>
+nnoremap <space>gl :<c-u>Glog<cr>
 nnoremap <space>h <c-w>h
 nnoremap <space>i :cw<cr>
 nnoremap <space>j <c-f>
