@@ -48,8 +48,10 @@ set colorcolumn=78
 set showmode
 " in normal mode, source current file with leader,
 nnoremap <leader>, :so %<cr>
-" in normal mode, run current file with leader.
-nnoremap <leader>. :!./%<cr>
+" in normal mode, run current file with leader. " :!./%<cr>
+nnoremap <leader>. :QuickRun<cr>
+vnoremap <leader>. :QuickRun<cr>
+
 " in normal mode insert current file name with leaderf
 nnoremap <leader>f "%p
 " open ~/.reminders with leaderr
