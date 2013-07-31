@@ -308,9 +308,6 @@ augroup vimrc_scala
   autocmd!
   autocmd FileType scala call s:vimrc_scala()
   "autocmd FileType scala nnoremap <buffer> <Space>r :<C-u>StartSBT
-  autocmd FileType scala setlocal et
-  autocmd FileType scala setlocal sw=2
-  autocmd FileType scala setlocal ts=8
   autocmd FileType scala set makeprg=sbt\ compile
   autocmd FileType scala set errorfile=target/quickfix/sbt.quickfix
   autocmd FileType scala set efm=%E\ %#[error]\ %f:%l:\ %m,%C\ %#[error]\ %p^,%-C%.%#,%Z,
