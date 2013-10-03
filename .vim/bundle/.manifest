@@ -37,5 +37,7 @@ NeoBundle 'tpope/vim-unimpaired', {'name': 'unimpaired'}
 NeoBundle 'thinca/vim-quickrun', {'name': 'quickrun'}
 NeoBundle 'tpope/vim-tbone', {'name': 'tbone'}
 NeoBundle 'scrooloose/syntastic'
+NeoBundle 'tsukkee/unite-tag'
+
 "NeoBundle 'megaannum/vimside', {'name': 'ensime'}
 " vi: set ft=vim:
