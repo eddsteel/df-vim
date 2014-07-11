@@ -350,7 +350,9 @@ let vimclojure#NailgunClient = "/usr/local/bin/ng"
 " Unite
 
 nnoremap <C-p> :<C-u>Unite file_rec/async -input=src\  -start-insert -toggle -buffer-name=file -immediately<cr>
-nnoremap <space>/ :<C-u>Unite grep:src -quick-match -immediately -toggle -buffer-name=grep<cr>
+nnoremap <space>/ :<C-u>Unite grep:src -quick-match -immediately -toggle -buffer-name=grep -no-start-insert<cr>
+nnoremap [Q :<C-u>UniteResume<cr><c-p><cr>
+nnoremap ]Q :<C-u>UniteResume<cr><c-n><cr>
 nnoremap <space>F :<C-u>Unite grep:.::<C-r><C-w><CR>
 
 
