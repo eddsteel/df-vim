@@ -124,10 +124,6 @@ cmap w!! w !sudo tee % >/dev/null
 " see command line history
 nnoremap !! :!<CR>
 
-" nomal regex format
-nnoremap / /\v
-vnoremap / /\v
-
 
 set tags=./tags,../tags,tags,~/Projects/tags
 " removed from default: mgTt

@@ -38,6 +38,8 @@ NeoBundle 'thinca/vim-quickrun', {'name': 'quickrun'}
 NeoBundle 'tpope/vim-tbone', {'name': 'tbone'}
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'tsukkee/unite-tag'
+NeoBundle 'haya14busa/incsearch.vim'
+NeoBundle 'cohama/agit.vim'
 
 "NeoBundle 'megaannum/vimside', {'name': 'ensime'}
 " vi: set ft=vim:
